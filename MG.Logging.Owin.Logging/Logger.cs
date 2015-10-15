@@ -1,4 +1,4 @@
-namespace MG.Logging.Owin.Logging.NLog
+namespace MG.Logging.Owin.Logging
 {
 	using System;
 	using System.Diagnostics;
@@ -16,6 +16,12 @@ namespace MG.Logging.Owin.Logging.NLog
 
 		private readonly string name;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Logger"/> class.
+		/// </summary>
+		/// <param name="name">The name.</param>
+		/// <param name="getLogLevel">The get log level.</param>
+		/// <param name="loggingManager">The logging manager.</param>
 		internal Logger(string name, Func<TraceEventType, LogLevel> getLogLevel, ILoggingManager loggingManager)
 		{
 			this.name = name;

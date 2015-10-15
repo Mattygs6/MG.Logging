@@ -2,6 +2,8 @@
 {
 	using System;
 
+	using JetBrains.Annotations;
+
 	public interface ILoggingProvider
 	{
 		/// <summary>
@@ -12,13 +14,14 @@
 		bool IsEnabled(LogLevel level);
 
 		/// <summary>
-		///     Logs a message at the specified level.
+		/// Logs a message at the specified level.
 		/// </summary>
 		/// <param name="level">The level.</param>
-		/// <param name="format">The format.</param>
 		/// <param name="owner">The owner.</param>
+		/// <param name="format">The format.</param>
 		/// <param name="args">The format args.</param>
-		void Log(LogLevel level, string format, object owner, params object[] args);
+		[StringFormatMethod("format")]
+		void Log(LogLevel level, object owner, string format, params object[] args);
 
 		/// <summary>
 		///     Logs the exception at the specified level.

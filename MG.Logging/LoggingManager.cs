@@ -4,8 +4,6 @@
 	using System.Collections.Generic;
 	using System.Linq;
 
-	using JetBrains.Annotations;
-
 	/// <summary>
 	///     The Logging Manager
 	/// </summary>
@@ -27,45 +25,42 @@
 		/// <summary>
 		///     Logs an audit message.
 		/// </summary>
-		/// <param name="format">The format.</param>
 		/// <param name="owner">The owner.</param>
+		/// <param name="format">The format.</param>
 		/// <param name="args">The format args.</param>
-		[StringFormatMethod("format")]
-		public void Audit(string format, object owner, params object[] args)
+		public void Audit(object owner, string format, params object[] args)
 		{
 			foreach (var provider in loggingProviders)
 			{
-				provider.Log(LogLevel.Audit, format, owner, args);
+				provider.Log(LogLevel.Audit, owner, format, args);
 			}
 		}
 
 		/// <summary>
 		///     Logs a debug message.
 		/// </summary>
-		/// <param name="format">The format.</param>
 		/// <param name="owner">The owner.</param>
+		/// <param name="format">The format.</param>
 		/// <param name="args">The format args.</param>
-		[StringFormatMethod("format")]
-		public void Debug(string format, object owner, params object[] args)
+		public void Debug(object owner, string format, params object[] args)
 		{
 			foreach (var provider in loggingProviders)
 			{
-				provider.Log(LogLevel.Debug, format, owner, args);
+				provider.Log(LogLevel.Debug, owner, format, args);
 			}
 		}
 
 		/// <summary>
 		///     Logs an error message.
 		/// </summary>
-		/// <param name="format">The format.</param>
 		/// <param name="owner">The owner.</param>
+		/// <param name="format">The format.</param>
 		/// <param name="args">The format args.</param>
-		[StringFormatMethod("format")]
-		public void Error(string format, object owner, params object[] args)
+		public void Error(object owner, string format, params object[] args)
 		{
 			foreach (var provider in loggingProviders)
 			{
-				provider.Log(LogLevel.Error, format, owner, args);
+				provider.Log(LogLevel.Error, owner, format, args);
 			}
 		}
 
@@ -86,15 +81,14 @@
 		/// <summary>
 		///     Logs a critical message.
 		/// </summary>
-		/// <param name="format">The format.</param>
 		/// <param name="owner">The owner.</param>
+		/// <param name="format">The format.</param>
 		/// <param name="args">The format args.</param>
-		[StringFormatMethod("format")]
-		public void Fatal(string format, object owner, params object[] args)
+		public void Fatal(object owner, string format, params object[] args)
 		{
 			foreach (var provider in loggingProviders)
 			{
-				provider.Log(LogLevel.Fatal, format, owner, args);
+				provider.Log(LogLevel.Fatal, owner, format, args);
 			}
 		}
 
@@ -115,15 +109,14 @@
 		/// <summary>
 		///     Logs an Informational message.
 		/// </summary>
-		/// <param name="format">The format.</param>
 		/// <param name="owner">The owner.</param>
+		/// <param name="format">The format.</param>
 		/// <param name="args">The format args.</param>
-		[StringFormatMethod("format")]
-		public void Info(string format, object owner, params object[] args)
+		public void Info(object owner, string format, params object[] args)
 		{
 			foreach (var provider in loggingProviders)
 			{
-				provider.Log(LogLevel.Info, format, owner, args);
+				provider.Log(LogLevel.Info, owner, format, args);
 			}
 		}
 
@@ -141,15 +134,14 @@
 		///     Logs a message at the specified level.
 		/// </summary>
 		/// <param name="level">The level.</param>
-		/// <param name="format">The format.</param>
 		/// <param name="owner">The owner.</param>
+		/// <param name="format">The format.</param>
 		/// <param name="args">The format args.</param>
-		[StringFormatMethod("format")]
-		public void Log(LogLevel level, string format, object owner, params object[] args)
+		public void Log(LogLevel level, object owner, string format, params object[] args)
 		{
 			foreach (var provider in loggingProviders)
 			{
-				provider.Log(level, format, owner, args);
+				provider.Log(level, owner, format, args);
 			}
 		}
 
@@ -171,30 +163,28 @@
 		/// <summary>
 		///     Logs a verbose message.
 		/// </summary>
-		/// <param name="format">The format.</param>
 		/// <param name="owner">The owner.</param>
+		/// <param name="format">The format.</param>
 		/// <param name="args">The format args.</param>
-		[StringFormatMethod("format")]
-		public void Verbose(string format, object owner, params object[] args)
+		public void Verbose(object owner, string format, params object[] args)
 		{
 			foreach (var provider in loggingProviders)
 			{
-				provider.Log(LogLevel.Verbose, format, owner, args);
+				provider.Log(LogLevel.Verbose, owner, format, args);
 			}
 		}
 
 		/// <summary>
 		///     Logs a message as a warning.
 		/// </summary>
-		/// <param name="format">The format.</param>
 		/// <param name="owner">The owner.</param>
+		/// <param name="format">The format.</param>
 		/// <param name="args">The format args.</param>
-		[StringFormatMethod("format")]
-		public void Warn(string format, object owner, params object[] args)
+		public void Warn(object owner, string format, params object[] args)
 		{
 			foreach (var provider in loggingProviders)
 			{
-				provider.Log(LogLevel.Warn, format, owner, args);
+				provider.Log(LogLevel.Warn, owner, format, args);
 			}
 		}
 

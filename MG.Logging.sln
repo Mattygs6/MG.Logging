@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MG.Logging.NLog", "MG.Loggi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MG.Logging.Owin.Logging", "MG.Logging.Owin.Logging\MG.Logging.Owin.Logging.csproj", "{EA688AF3-B291-4E33-AFF6-35222FBADC30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Website", "Website\Website.csproj", "{581930DE-B4D4-4E6F-8F4E-E1646191DDAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MG.Logging.Tests", "MG.Logging.Tests\MG.Logging.Tests.csproj", "{18CA5CC9-ECAE-486E-9AD8-A0E996178341}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{EA688AF3-B291-4E33-AFF6-35222FBADC30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA688AF3-B291-4E33-AFF6-35222FBADC30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA688AF3-B291-4E33-AFF6-35222FBADC30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{581930DE-B4D4-4E6F-8F4E-E1646191DDAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{581930DE-B4D4-4E6F-8F4E-E1646191DDAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{581930DE-B4D4-4E6F-8F4E-E1646191DDAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{581930DE-B4D4-4E6F-8F4E-E1646191DDAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18CA5CC9-ECAE-486E-9AD8-A0E996178341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18CA5CC9-ECAE-486E-9AD8-A0E996178341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18CA5CC9-ECAE-486E-9AD8-A0E996178341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18CA5CC9-ECAE-486E-9AD8-A0E996178341}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

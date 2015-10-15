@@ -1,4 +1,4 @@
-﻿namespace MG.Logging.Owin.Logging.NLog
+﻿namespace MG.Logging.Owin.Logging
 {
 	using System;
 	using System.Diagnostics;
@@ -6,7 +6,7 @@
 
 	using Microsoft.Owin.Logging;
 
-	public class NLogFactory : ILoggerFactory
+	public class LoggingManagerFactory : ILoggerFactory
 	{
 		/// <summary>
 		///     The log level translation function to get a NLog loglevel
@@ -16,7 +16,7 @@
 		/// <summary>
 		///     Create a logger factory with the default translation
 		/// </summary>
-		public NLogFactory()
+		public LoggingManagerFactory()
 		{
 			this.getLogLevel = DefaultGetLogLevel;
 		}
@@ -25,7 +25,7 @@
 		///     Create a logger factory with a custom translation routine
 		/// </summary>
 		/// <param name="getLogLevel"></param>
-		public NLogFactory(Func<TraceEventType, LogLevel> getLogLevel)
+		public LoggingManagerFactory(Func<TraceEventType, LogLevel> getLogLevel)
 		{
 			this.getLogLevel = getLogLevel;
 		}
@@ -44,6 +44,12 @@
 
 		#endregion
 
+		/// <summary>
+		/// Creates a new ILogger instance of the given name.
+		/// </summary>
+		/// <param name="name">The name.</param>
+		/// <param name="loggingManager">The logging manager.</param>
+		/// <returns>A logger isntance</returns>
 		public ILogger Create(string name, ILoggingManager loggingManager)
 		{
 			return new Logger(name, this.getLogLevel, loggingManager);

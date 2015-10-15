@@ -2,34 +2,39 @@
 {
 	using System;
 
+	using JetBrains.Annotations;
+
 	/// <summary>
 	///     The Logging Manager interface
 	/// </summary>
 	public interface ILoggingManager
 	{
 		/// <summary>
-		///     Logs an audit message.
+		/// Logs an audit message.
 		/// </summary>
-		/// <param name="message">The message.</param>
 		/// <param name="owner">The owner.</param>
-		/// <param name="formatParams">The format parameters.</param>
-		void Audit(string message, object owner, params object[] formatParams);
+		/// <param name="format">The format.</param>
+		/// <param name="args">The format parameters.</param>
+		[StringFormatMethod("format")]
+		void Audit(object owner, string format, params object[] args);
 
 		/// <summary>
-		///     Logs a debug message.
+		/// Logs a debug message.
 		/// </summary>
-		/// <param name="message">The message.</param>
 		/// <param name="owner">The owner.</param>
-		/// <param name="formatParams">The format parameters.</param>
-		void Debug(string message, object owner, params object[] formatParams);
+		/// <param name="format">The format.</param>
+		/// <param name="args">The format parameters.</param>
+		[StringFormatMethod("format")]
+		void Debug(object owner, string format, params object[] args);
 
 		/// <summary>
-		///     Logs an error message.
+		/// Logs an error message.
 		/// </summary>
-		/// <param name="message">The message.</param>
 		/// <param name="owner">The owner.</param>
-		/// <param name="formatParams">The format parameters.</param>
-		void Error(string message, object owner, params object[] formatParams);
+		/// <param name="format">The format.</param>
+		/// <param name="args">The format parameters.</param>
+		[StringFormatMethod("format")]
+		void Error(object owner, string format, params object[] args);
 
 		/// <summary>
 		///     Logs an exception. (Severity Error)
@@ -40,12 +45,13 @@
 		void Exception(Exception exception, object owner, string message = null);
 
 		/// <summary>
-		///     Logs a fatal message.
+		/// Logs a fatal message.
 		/// </summary>
-		/// <param name="message">The message.</param>
 		/// <param name="owner">The owner.</param>
-		/// <param name="formatParams">The format parameters.</param>
-		void Fatal(string message, object owner, params object[] formatParams);
+		/// <param name="format">The format.</param>
+		/// <param name="args">The format parameters.</param>
+		[StringFormatMethod("format")]
+		void Fatal(object owner, string format, params object[] args);
 
 		/// <summary>
 		///     Logs a fatal exception.
@@ -56,12 +62,13 @@
 		void Fatal(Exception exception, object owner, string message = null);
 
 		/// <summary>
-		///     Logs an Informational message.
+		/// Logs an Informational message.
 		/// </summary>
-		/// <param name="message">The message.</param>
 		/// <param name="owner">The owner.</param>
-		/// <param name="formatParams">The format parameters.</param>
-		void Info(string message, object owner, params object[] formatParams);
+		/// <param name="format">The format.</param>
+		/// <param name="args">The format parameters.</param>
+		[StringFormatMethod("format")]
+		void Info(object owner, string format, params object[] args);
 
 		/// <summary>
 		///     Determines whether the specified level is enabled for any log provider.
@@ -71,13 +78,14 @@
 		bool IsEnabled(LogLevel level);
 
 		/// <summary>
-		///     Logs a message at the specified level.
+		/// Logs a message at the specified level.
 		/// </summary>
 		/// <param name="level">The level.</param>
-		/// <param name="message">The message.</param>
 		/// <param name="owner">The owner.</param>
-		/// <param name="formatParams">The format parameters.</param>
-		void Log(LogLevel level, string message, object owner, params object[] formatParams);
+		/// <param name="format">The format.</param>
+		/// <param name="args">The format parameters.</param>
+		[StringFormatMethod("format")]
+		void Log(LogLevel level, object owner, string format, params object[] args);
 
 		/// <summary>
 		///     Logs an exception at the specified level.
@@ -89,20 +97,22 @@
 		void LogException(LogLevel level, Exception exception, object owner, string message = null);
 
 		/// <summary>
-		///     Logs a verbose message.
+		/// Logs a verbose message.
 		/// </summary>
-		/// <param name="message">The message.</param>
 		/// <param name="owner">The owner.</param>
-		/// <param name="formatParams">The format parameters.</param>
-		void Verbose(string message, object owner, params object[] formatParams);
+		/// <param name="format">The format.</param>
+		/// <param name="args">The format parameters.</param>
+		[StringFormatMethod("format")]
+		void Verbose(object owner, string format, params object[] args);
 
 		/// <summary>
-		///     Logs a message as a warning.
+		/// Logs a message as a warning.
 		/// </summary>
-		/// <param name="message">The message.</param>
 		/// <param name="owner">The owner.</param>
-		/// <param name="formatParams">The format parameters.</param>
-		void Warn(string message, object owner, params object[] formatParams);
+		/// <param name="format">The format.</param>
+		/// <param name="args">The format parameters.</param>
+		[StringFormatMethod("format")]
+		void Warn(object owner, string format, params object[] args);
 
 		/// <summary>
 		///     Logs an exception as a warning.

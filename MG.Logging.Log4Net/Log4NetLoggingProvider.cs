@@ -60,10 +60,10 @@
 		///     Logs a message at the specified level.
 		/// </summary>
 		/// <param name="level">The level.</param>
-		/// <param name="format">The format.</param>
 		/// <param name="owner">The owner.</param>
+		/// <param name="format">The format.</param>
 		/// <param name="args">The format args.</param>
-		public void Log(LogLevel level, string format, object owner, params object[] args)
+		public void Log(LogLevel level, object owner, string format, params object[] args)
 		{
 			Log(level, format, owner, null, args);
 		}
@@ -91,19 +91,15 @@
 		{
 			if (owner != null)
 			{
-				var type = owner as Type;
-				if (type != null)
-				{
-					return LogManager.GetLogger(type);
-				}
-
 				var name = owner as string;
 				if (!string.IsNullOrWhiteSpace(name))
 				{
 					return LogManager.GetLogger(name);
 				}
 
-				return LogManager.GetLogger(owner.GetType());
+				var type = owner as Type ?? owner.GetType();
+
+				return LogManager.GetLogger(type);
 			}
 
 			return nullLogger;
@@ -170,7 +166,7 @@
 
 					if (format.Contains(formatKey))
 					{
-						format = format.Replace(formatKey, format[i].ToString());
+						format = format.Replace(formatKey, args[i].ToString());
 					}
 				}
 			}
