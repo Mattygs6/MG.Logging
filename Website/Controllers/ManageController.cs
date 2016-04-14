@@ -150,26 +150,26 @@
 		public async Task<ActionResult> Index(ManageMessageId? message)
 		{
 			ViewBag.StatusMessage = message == ManageMessageId.ChangePasswordSuccess
-										? "Your password has been changed."
-										: message == ManageMessageId.SetPasswordSuccess
-											? "Your password has been set."
-											: message == ManageMessageId.SetTwoFactorSuccess
-												? "Your two-factor authentication provider has been set."
-												: message == ManageMessageId.Error
-													? "An error has occurred."
-													: message == ManageMessageId.AddPhoneSuccess
-														? "Your phone number was added."
-														: message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed." : "";
+				? "Your password has been changed."
+				: message == ManageMessageId.SetPasswordSuccess
+					? "Your password has been set."
+					: message == ManageMessageId.SetTwoFactorSuccess
+						? "Your two-factor authentication provider has been set."
+						: message == ManageMessageId.Error
+							? "An error has occurred."
+							: message == ManageMessageId.AddPhoneSuccess
+								? "Your phone number was added."
+								: message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed." : "";
 
 			var userId = User.Identity.GetUserId();
 			var model = new IndexViewModel
-							{
-								HasPassword = HasPassword(),
-								PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-								TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-								Logins = await UserManager.GetLoginsAsync(userId),
-								BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-							};
+			{
+				HasPassword = HasPassword(),
+				PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
+				TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
+				Logins = await UserManager.GetLoginsAsync(userId),
+				BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+			};
 			return View(model);
 		}
 
@@ -197,8 +197,8 @@
 			}
 			var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
 			return result.Succeeded
-						? RedirectToAction("ManageLogins")
-						: RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+				? RedirectToAction("ManageLogins")
+				: RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
 		}
 
 		//
@@ -206,8 +206,8 @@
 		public async Task<ActionResult> ManageLogins(ManageMessageId? message)
 		{
 			ViewBag.StatusMessage = message == ManageMessageId.RemoveLoginSuccess
-										? "The external login was removed."
-										: message == ManageMessageId.Error ? "An error has occurred." : "";
+				? "The external login was removed."
+				: message == ManageMessageId.Error ? "An error has occurred." : "";
 			var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
 			if (user == null)
 			{

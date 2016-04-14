@@ -14,7 +14,7 @@
 		bool IsEnabled(LogLevel level);
 
 		/// <summary>
-		/// Logs a message at the specified level.
+		///     Logs a message at the specified level.
 		/// </summary>
 		/// <param name="level">The level.</param>
 		/// <param name="owner">The owner.</param>

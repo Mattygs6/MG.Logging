@@ -24,7 +24,7 @@
 		{
 			ViewBag.Message = "Your contact page.";
 
-			this.loggingManager.Info(this, "User clicked on contact {0}", HttpContext.Request.UserHostAddress);
+			loggingManager.Info(this, "User clicked on contact {0}", HttpContext.Request.UserHostAddress);
 			return View();
 		}
 

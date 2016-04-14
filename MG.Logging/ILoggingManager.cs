@@ -10,7 +10,7 @@
 	public interface ILoggingManager
 	{
 		/// <summary>
-		/// Logs an audit message.
+		///     Logs an audit message.
 		/// </summary>
 		/// <param name="owner">The owner.</param>
 		/// <param name="format">The format.</param>
@@ -19,7 +19,7 @@
 		void Audit(object owner, string format, params object[] args);
 
 		/// <summary>
-		/// Logs a debug message.
+		///     Logs a debug message.
 		/// </summary>
 		/// <param name="owner">The owner.</param>
 		/// <param name="format">The format.</param>
@@ -28,7 +28,7 @@
 		void Debug(object owner, string format, params object[] args);
 
 		/// <summary>
-		/// Logs an error message.
+		///     Logs an error message.
 		/// </summary>
 		/// <param name="owner">The owner.</param>
 		/// <param name="format">The format.</param>
@@ -45,7 +45,7 @@
 		void Exception(Exception exception, object owner, string message = null);
 
 		/// <summary>
-		/// Logs a fatal message.
+		///     Logs a fatal message.
 		/// </summary>
 		/// <param name="owner">The owner.</param>
 		/// <param name="format">The format.</param>
@@ -62,7 +62,7 @@
 		void Fatal(Exception exception, object owner, string message = null);
 
 		/// <summary>
-		/// Logs an Informational message.
+		///     Logs an Informational message.
 		/// </summary>
 		/// <param name="owner">The owner.</param>
 		/// <param name="format">The format.</param>
@@ -78,7 +78,7 @@
 		bool IsEnabled(LogLevel level);
 
 		/// <summary>
-		/// Logs a message at the specified level.
+		///     Logs a message at the specified level.
 		/// </summary>
 		/// <param name="level">The level.</param>
 		/// <param name="owner">The owner.</param>
@@ -97,7 +97,7 @@
 		void LogException(LogLevel level, Exception exception, object owner, string message = null);
 
 		/// <summary>
-		/// Logs a verbose message.
+		///     Logs a verbose message.
 		/// </summary>
 		/// <param name="owner">The owner.</param>
 		/// <param name="format">The format.</param>
@@ -106,7 +106,7 @@
 		void Verbose(object owner, string format, params object[] args);
 
 		/// <summary>
-		/// Logs a message as a warning.
+		///     Logs a message as a warning.
 		/// </summary>
 		/// <param name="owner">The owner.</param>
 		/// <param name="format">The format.</param>

@@ -18,7 +18,7 @@
 		/// </summary>
 		public LoggingManagerFactory()
 		{
-			this.getLogLevel = DefaultGetLogLevel;
+			getLogLevel = DefaultGetLogLevel;
 		}
 
 		/// <summary>
@@ -45,14 +45,14 @@
 		#endregion
 
 		/// <summary>
-		/// Creates a new ILogger instance of the given name.
+		///     Creates a new ILogger instance of the given name.
 		/// </summary>
 		/// <param name="name">The name.</param>
 		/// <param name="loggingManager">The logging manager.</param>
 		/// <returns>A logger isntance</returns>
 		public ILogger Create(string name, ILoggingManager loggingManager)
 		{
-			return new Logger(name, this.getLogLevel, loggingManager);
+			return new Logger(name, getLogLevel, loggingManager);
 		}
 
 		/// <summary>

@@ -20,65 +20,6 @@
 			nullLogger = LogManager.CreateNullLogger();
 		}
 
-		#region ILoggingProvider Members
-
-		/// <summary>
-		///     Determines whether the specified level is enabled for this logging provider.
-		/// </summary>
-		/// <param name="level">The level.</param>
-		/// <returns>
-		///     True if enabled, false otherwise
-		/// </returns>
-		public bool IsEnabled(global::MG.Logging.LogLevel level)
-		{
-			switch (level)
-			{
-				case global::MG.Logging.LogLevel.Info:
-				case global::MG.Logging.LogLevel.Audit:
-					return nullLogger.IsInfoEnabled;
-				case global::MG.Logging.LogLevel.Debug:
-					return nullLogger.IsDebugEnabled;
-				case global::MG.Logging.LogLevel.Error:
-					return nullLogger.IsErrorEnabled;
-				case global::MG.Logging.LogLevel.Verbose:
-					return nullLogger.IsTraceEnabled;
-				case global::MG.Logging.LogLevel.Warn:
-					return nullLogger.IsWarnEnabled;
-				case global::MG.Logging.LogLevel.Fatal:
-					return nullLogger.IsFatalEnabled;
-				case global::MG.Logging.LogLevel.All:
-					return nullLogger.IsFatalEnabled;
-				default:
-					return true;
-			}
-		}
-
-		/// <summary>
-		///     Logs a message at the specified level.
-		/// </summary>
-		/// <param name="level">The level.</param>
-		/// <param name="owner">The owner.</param>
-		/// <param name="format">The format.</param>
-		/// <param name="args">The format args.</param>
-		public void Log(global::MG.Logging.LogLevel level, object owner, string format, params object[] args)
-		{
-			Log(level, format, owner, null, args);
-		}
-
-		/// <summary>
-		///     Logs the exception at the specified level.
-		/// </summary>
-		/// <param name="level">The level.</param>
-		/// <param name="exception">The exception.</param>
-		/// <param name="owner">The owner.</param>
-		/// <param name="message">The message.</param>
-		public void LogException(global::MG.Logging.LogLevel level, Exception exception, object owner, string message = null)
-		{
-			Log(level, message ?? exception.Message, owner, exception);
-		}
-
-		#endregion
-
 		/// <summary>
 		///     Gets the logger.
 		/// </summary>
@@ -168,12 +109,75 @@
 
 					if (format.Contains(formatKey))
 					{
-						format = format.Replace(formatKey, args[i].ToString());
+						format = format.Replace(formatKey, string.Concat(args[i]));
 					}
 				}
 			}
 
 			return format;
 		}
+
+		#region ILoggingProvider Members
+
+		/// <summary>
+		///     Determines whether the specified level is enabled for this logging provider.
+		/// </summary>
+		/// <param name="level">The level.</param>
+		/// <returns>
+		///     True if enabled, false otherwise
+		/// </returns>
+		public bool IsEnabled(global::MG.Logging.LogLevel level)
+		{
+			switch (level)
+			{
+				case global::MG.Logging.LogLevel.Info:
+				case global::MG.Logging.LogLevel.Audit:
+					return nullLogger.IsInfoEnabled;
+				case global::MG.Logging.LogLevel.Debug:
+					return nullLogger.IsDebugEnabled;
+				case global::MG.Logging.LogLevel.Error:
+					return nullLogger.IsErrorEnabled;
+				case global::MG.Logging.LogLevel.Verbose:
+					return nullLogger.IsTraceEnabled;
+				case global::MG.Logging.LogLevel.Warn:
+					return nullLogger.IsWarnEnabled;
+				case global::MG.Logging.LogLevel.Fatal:
+					return nullLogger.IsFatalEnabled;
+				case global::MG.Logging.LogLevel.All:
+					return nullLogger.IsFatalEnabled;
+				default:
+					return true;
+			}
+		}
+
+		/// <summary>
+		///     Logs a message at the specified level.
+		/// </summary>
+		/// <param name="level">The level.</param>
+		/// <param name="owner">The owner.</param>
+		/// <param name="format">The format.</param>
+		/// <param name="args">The format args.</param>
+		public void Log(global::MG.Logging.LogLevel level, object owner, string format, params object[] args)
+		{
+			Log(level, format, owner, null, args);
+		}
+
+		/// <summary>
+		///     Logs the exception at the specified level.
+		/// </summary>
+		/// <param name="level">The level.</param>
+		/// <param name="exception">The exception.</param>
+		/// <param name="owner">The owner.</param>
+		/// <param name="message">The message.</param>
+		public void LogException(
+			global::MG.Logging.LogLevel level,
+			Exception exception,
+			object owner,
+			string message = null)
+		{
+			Log(level, message ?? exception.Message, owner, exception);
+		}
+
+		#endregion
 	}
 }

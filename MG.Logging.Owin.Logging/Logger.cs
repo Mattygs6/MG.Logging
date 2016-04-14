@@ -17,7 +17,7 @@ namespace MG.Logging.Owin.Logging
 		private readonly string name;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Logger"/> class.
+		///     Initializes a new instance of the <see cref="Logger" /> class.
 		/// </summary>
 		/// <param name="name">The name.</param>
 		/// <param name="getLogLevel">The get log level.</param>
@@ -49,19 +49,19 @@ namespace MG.Logging.Owin.Logging
 			Exception exception,
 			Func<object, Exception, string> formatter)
 		{
-			var level = this.getLogLevel(eventType);
+			var level = getLogLevel(eventType);
 
 			if (state == null)
 			{
-				return this.loggingManager.IsEnabled(level);
+				return loggingManager.IsEnabled(level);
 			}
 
-			if (!this.loggingManager.IsEnabled(level))
+			if (!loggingManager.IsEnabled(level))
 			{
 				return false;
 			}
 
-			this.loggingManager.LogException(level, exception, name, formatter(state, exception));
+			loggingManager.LogException(level, exception, name, formatter(state, exception));
 
 			return true;
 		}

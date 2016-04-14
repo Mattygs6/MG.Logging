@@ -9,6 +9,9 @@
 	/// </summary>
 	public class LoggingManager : ILoggingManager
 	{
+		/// <summary>
+		///     The logging providers
+		/// </summary>
 		private readonly ILoggingProvider[] loggingProviders;
 
 		/// <summary>

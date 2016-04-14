@@ -23,65 +23,6 @@
 			nullLogger = LogManager.GetLogger("[Null]");
 		}
 
-		#region ILoggingProvider Members
-
-		/// <summary>
-		///     Determines whether the specified level is enabled for this logging provider.
-		/// </summary>
-		/// <param name="level">The level.</param>
-		/// <returns>
-		///     True if enabled, false otherwise
-		/// </returns>
-		public bool IsEnabled(LogLevel level)
-		{
-			switch (level)
-			{
-				case LogLevel.Info:
-				case LogLevel.Audit:
-					return nullLogger.IsInfoEnabled;
-				case LogLevel.Debug:
-					return nullLogger.IsDebugEnabled;
-				case LogLevel.Error:
-					return nullLogger.IsErrorEnabled;
-				case LogLevel.Verbose:
-					return nullLogger.Logger.IsEnabledFor(Level.Verbose);
-				case LogLevel.Warn:
-					return nullLogger.IsWarnEnabled;
-				case LogLevel.Fatal:
-					return nullLogger.IsFatalEnabled;
-				case LogLevel.All:
-					return nullLogger.Logger.IsEnabledFor(Level.All);
-				default:
-					return true;
-			}
-		}
-
-		/// <summary>
-		///     Logs a message at the specified level.
-		/// </summary>
-		/// <param name="level">The level.</param>
-		/// <param name="owner">The owner.</param>
-		/// <param name="format">The format.</param>
-		/// <param name="args">The format args.</param>
-		public void Log(LogLevel level, object owner, string format, params object[] args)
-		{
-			Log(level, format, owner, null, args);
-		}
-
-		/// <summary>
-		///     Logs the exception at the specified level.
-		/// </summary>
-		/// <param name="level">The level.</param>
-		/// <param name="exception">The exception.</param>
-		/// <param name="owner">The owner.</param>
-		/// <param name="message">The message.</param>
-		public void LogException(LogLevel level, Exception exception, object owner, string message = null)
-		{
-			Log(level, message ?? exception.Message, owner, exception);
-		}
-
-		#endregion
-
 		/// <summary>
 		///     Gets the logger.
 		/// </summary>
@@ -166,12 +107,71 @@
 
 					if (format.Contains(formatKey))
 					{
-						format = format.Replace(formatKey, args[i].ToString());
+						format = format.Replace(formatKey, string.Concat(args[i]));
 					}
 				}
 			}
 
 			return format;
 		}
+
+		#region ILoggingProvider Members
+
+		/// <summary>
+		///     Determines whether the specified level is enabled for this logging provider.
+		/// </summary>
+		/// <param name="level">The level.</param>
+		/// <returns>
+		///     True if enabled, false otherwise
+		/// </returns>
+		public bool IsEnabled(LogLevel level)
+		{
+			switch (level)
+			{
+				case LogLevel.Info:
+				case LogLevel.Audit:
+					return nullLogger.IsInfoEnabled;
+				case LogLevel.Debug:
+					return nullLogger.IsDebugEnabled;
+				case LogLevel.Error:
+					return nullLogger.IsErrorEnabled;
+				case LogLevel.Verbose:
+					return nullLogger.Logger.IsEnabledFor(Level.Verbose);
+				case LogLevel.Warn:
+					return nullLogger.IsWarnEnabled;
+				case LogLevel.Fatal:
+					return nullLogger.IsFatalEnabled;
+				case LogLevel.All:
+					return nullLogger.Logger.IsEnabledFor(Level.All);
+				default:
+					return true;
+			}
+		}
+
+		/// <summary>
+		///     Logs a message at the specified level.
+		/// </summary>
+		/// <param name="level">The level.</param>
+		/// <param name="owner">The owner.</param>
+		/// <param name="format">The format.</param>
+		/// <param name="args">The format args.</param>
+		public void Log(LogLevel level, object owner, string format, params object[] args)
+		{
+			Log(level, format, owner, null, args);
+		}
+
+		/// <summary>
+		///     Logs the exception at the specified level.
+		/// </summary>
+		/// <param name="level">The level.</param>
+		/// <param name="exception">The exception.</param>
+		/// <param name="owner">The owner.</param>
+		/// <param name="message">The message.</param>
+		public void LogException(LogLevel level, Exception exception, object owner, string message = null)
+		{
+			Log(level, message ?? exception.Message, owner, exception);
+		}
+
+		#endregion
 	}
 }
